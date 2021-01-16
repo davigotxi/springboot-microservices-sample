@@ -15,6 +15,7 @@
         <module>service-registry</module>
         <module>cloud-gateway</module>
         <module>hystrix-dashboard</module>
+        <module>cloud-config-server</module>
     </modules>
 </project>
 
