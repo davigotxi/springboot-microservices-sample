@@ -16,7 +16,21 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<spring-cloud.version>2020.0.0</spring-cloud.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 
 	<dependencies>
 		<dependency>
@@ -26,6 +40,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
 		<dependency>
@@ -61,5 +79,60 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<profiles>
+		<profile>
+			<id>spring-repo</id>
+			<activation>
+				<property>
+					<name>!disableSpringSnapshots</name>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>spring-release</id>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<url>https://repo.spring.io/release</url>
+				</repository>
+				<repository>
+					<id>spring-milestone</id>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<url>https://repo.spring.io/milestone</url>
+				</repository>
+				<repository>
+					<id>spring-snapshot</id>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<url>https://repo.spring.io/snapshot</url>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>spring-release</id>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<url>https://repo.spring.io/release</url>
+				</pluginRepository>
+				<pluginRepository>
+					<id>spring-milestone</id>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<url>https://repo.spring.io/milestone</url>
+				</pluginRepository>
+				<pluginRepository>
+					<id>spring-snapshot</id>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<url>https://repo.spring.io/snapshot</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
 </project>

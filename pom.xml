@@ -12,6 +12,7 @@
     <modules>
         <module>department-service</module>
         <module>user-service</module>
+        <module>service-registry</module>
     </modules>
 </project>
 
